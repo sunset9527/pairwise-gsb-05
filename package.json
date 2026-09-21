@@ -1,0 +1,82 @@
+{
+  "private": true,
+  "scripts": {
+    "⬇️⬇️⬇️⬇️⬇️ package ⬇️⬇️⬇️⬇️⬇️": "▼▼▼▼▼ package ▼▼▼▼▼",
+    "watch": "npm run-script watch --workspace @uiw/react-md-editor",
+    "build": "npm run-script build --workspace @uiw/react-md-editor",
+    "doc": "npm run-script build --workspace www",
+    "start": "npm run-script start --workspace www",
+    "⬆️⬆️⬆️⬆️⬆️ package ⬆️⬆️⬆️⬆️⬆️": "▲▲▲▲▲ package ▲▲▲▲▲",
+    "test": "tsbb test",
+    "coverage": "tsbb test --coverage --bail",
+    "prepare": "husky install",
+    "version": "lerna version --exact --force-publish --no-push --no-git-tag-version",
+    "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
+    "remove": "npm run clean && lerna exec \"rm -rf package-lock.json\" --scope react-code-preview-layout --scope website",
+    "clean": "lerna clean --yes"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/uiwjs/react-md-editor"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@kkt/less-modules": "^7.4.9",
+    "@kkt/ncc": "^1.0.14",
+    "@types/react": "~18.2.0",
+    "@types/react-dom": "~18.2.0",
+    "@types/react-test-renderer": "~18.0.0",
+    "compile-less-cli": "~1.9.0",
+    "husky": "~8.0.0",
+    "jest": "^29.5.0",
+    "jest-environment-jsdom": "^29.5.0",
+    "jest-environment-node": "^29.5.0",
+    "jest-watch-typeahead": "^2.2.2",
+    "kkt": "^7.4.9",
+    "lerna": "8.0.0",
+    "lint-staged": "^15.1.0",
+    "prettier": "^3.0.0",
+    "react": "~18.2.0",
+    "react-dom": "~18.2.0",
+    "react-test-renderer": "~18.2.0",
+    "tsbb": "^4.5.1"
+  },
+  "lint-staged": {
+    "*.{js,jsx,less,md,json}": [
+      "prettier --write"
+    ],
+    "*.ts?(x)": [
+      "prettier --parser=typescript --write"
+    ]
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "<rootDir>/core/src/**/*.{ts,tsx}"
+    ],
+    "transformIgnorePatterns": [
+      "<rootDir>/node_modules/?!(.*)"
+    ]
+  },
+  "workspaces": [
+    "core",
+    "example/**",
+    "www"
+  ],
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "keywords": [
+    "react",
+    "editor",
+    "md-editor",
+    "markdown",
+    "react-markdown",
+    "react-md-editor",
+    "react-markdown-editor",
+    "markdown-editor",
+    "md",
+    "uiw",
+    "uiwjs",
+    "code"
+  ]
+}

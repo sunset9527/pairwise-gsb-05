@@ -1,0 +1,95 @@
+{
+  "name": "@uiw/react-md-editor",
+  "version": "4.1.2",
+  "description": "A markdown editor with preview, implemented with React.js and TypeScript.",
+  "homepage": "https://uiwjs.github.io/react-md-editor/",
+  "funding": "https://jaywcjlove.github.io/#/sponsor",
+  "author": "kenny wang <wowohoo@qq.com>",
+  "main": "lib/index.js",
+  "module": "esm/index.js",
+  "exports": {
+    "./README.md": "./README.md",
+    "./package.json": "./package.json",
+    "./markdown-editor.css": "./markdown-editor.css",
+    ".": {
+      "import": "./esm/index.js",
+      "types": "./lib/index.d.ts",
+      "require": "./lib/index.js"
+    },
+    "./common": {
+      "import": "./esm/index.common.js",
+      "types": "./lib/index.common.d.ts",
+      "require": "./lib/index.common.js"
+    },
+    "./nohighlight": {
+      "import": "./esm/index.nohighlight.js",
+      "types": "./lib/index.nohighlight.d.ts",
+      "require": "./lib/index.nohighlight.js"
+    },
+    "./commands": {
+      "import": "./esm/commands/index.js",
+      "types": "./lib/commands/index.d.ts",
+      "require": "./lib/commands/index.js"
+    },
+    "./commands-cn": {
+      "import": "./esm/commands/index.cn.js",
+      "types": "./lib/commands/index.cn.d.ts",
+      "require": "./lib/commands/index.cn.js"
+    }
+  },
+  "scripts": {
+    "css:build": "compile-less -d src -o esm",
+    "css:watch": "compile-less -d src -o esm --watch",
+    "css:build:dist": "compile-less -d src --combine markdown-editor.css --rm-global",
+    "bundle": "ncc build src/index.tsx --target web --filename mdeditor",
+    "bundle:watch": "ncc watch src/index.tsx --target web --filename mdeditor",
+    "bundle:min": "ncc build src/index.tsx --target web --filename mdeditor --minify",
+    "watch": "tsbb watch src/*.tsx --use-babel & npm run css:watch",
+    "build": "tsbb build src/*.tsx --use-babel && npm run css:build && npm run css:build:dist",
+    "test": "tsbb test",
+    "coverage": "tsbb test --coverage --bail"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/uiwjs/react-md-editor"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "markdown-editor.css",
+    "common.d.ts",
+    "nohighlight.d.ts",
+    "commands.d.ts",
+    "commands-cn.d.ts",
+    "lib",
+    "dist",
+    "esm",
+    "src"
+  ],
+  "license": "MIT",
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.14.6",
+    "@uiw/react-markdown-preview": "^5.2.0",
+    "rehype": "~13.0.0",
+    "rehype-prism-plus": "~2.0.0"
+  },
+  "keywords": [
+    "react",
+    "editor",
+    "md-editor",
+    "markdown",
+    "react-markdown",
+    "react-md-editor",
+    "react-markdown-editor",
+    "markdown-editor",
+    "md",
+    "uiw",
+    "uiwjs",
+    "code"
+  ]
+}
