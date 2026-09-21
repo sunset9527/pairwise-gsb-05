@@ -68,7 +68,7 @@ export function selectWord({
 export function selectLine({ text, selection }: TextSection): TextRange {
   const start = text.slice(0, selection.start).lastIndexOf('\n') + 1;
   let end = text.slice(selection.end).indexOf('\n') + selection.end;
-  if (end === selection.end - 1) {
+  if (end === selection.end) {
     end = text.length;
   }
   return { start, end };
@@ -108,7 +108,7 @@ export function getBreaksNeededForEmptyLineBefore(text = '', startPosition: numb
  *  to make sure there's an empty line between 'startPosition' and the next text
  */
 export function getBreaksNeededForEmptyLineAfter(text = '', startPosition: number): number {
-  if (startPosition === text.length - 1) return 0;
+  if (startPosition === text.length) return 0;
 
   // rules:
   // - If we're in the first line, no breaks are needed
