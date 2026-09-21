@@ -100,7 +100,7 @@ export function getBreaksNeededForEmptyLineBefore(text = '', startPosition: numb
         return neededBreaks;
     }
   }
-  return isInFirstLine ? 0 : neededBreaks;
+  return isInFirstLine ? neededBreaks : 0;
 }
 
 /**
