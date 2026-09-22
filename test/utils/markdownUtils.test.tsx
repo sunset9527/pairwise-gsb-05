@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 import '@testing-library/jest-dom';
-import { executeCommand, selectWord } from '../../core/src/utils/markdownUtils';
+import { executeCommand, selectLine, selectWord } from '../../core/src/utils/markdownUtils';
 import type { TextAreaTextApi } from '../../core/src/commands';
 
 function createApi(initialText: string, selection: { start: number; end: number }) {
@@ -82,4 +82,14 @@ it('executeCommand unwraps italic while keeping bold', () => {
     prefix: '*',
   });
   expect(getText()).toBe('**hello**');
+});
+
+it('selectLine does not expand to the following text when the selection ends at a newline', () => {
+  expect(selectLine({ text: 'aaa\nbbb', selection: { start: 0, end: 3 } })).toEqual({ start: 0, end: 3 });
+  expect(selectLine({ text: 'aaa\nbbb\nccc', selection: { start: 4, end: 7 } })).toEqual({ start: 4, end: 7 });
+});
+
+it('selectLine extends to the end of the text when no newline follows', () => {
+  expect(selectLine({ text: 'ab\ncd', selection: { start: 4, end: 4 } })).toEqual({ start: 3, end: 5 });
+  expect(selectLine({ text: 'test', selection: { start: 2, end: 2 } })).toEqual({ start: 0, end: 4 });
 });
